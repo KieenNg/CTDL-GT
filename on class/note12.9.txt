@@ -1,0 +1,5 @@
+độ phức tạp T(n)
+ - chỉ cần qua tâm đến số vòng lặp: vòng for
+ 1 vòng: O(n)
+ 2 vòng: O(n^2)
+ 3 vòng: O(n^3)
