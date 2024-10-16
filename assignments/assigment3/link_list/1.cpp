@@ -143,5 +143,5 @@ int main (){
     InsertXAfterK(H,31, 34);
     HienThi(H);
     Count(H);
-    
+   Count(H);
 }
