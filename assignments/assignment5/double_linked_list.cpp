@@ -69,21 +69,122 @@ void InsertBeforeP(DLink_list &DL, Node* P, int x){
         cout << "P khong hop le!\n";
         return;
     }
-    if(P == DL.H){ // P la vi tri dau tien => Them vao vi tri dau tien
+    if(P == DL.H){ // P la vi tri dau tien => InsertBegin
         InsertBegin(DL,x);
+        return;
     }
     else {
         newNode->nextR = P;
         newNode->nextL = P->nextL;
         P->nextL = newNode;
         newNode->nextL->nextR = newNode;
+        return;
     }
 }
 //them 1 node vao truoc node P 
 void InsertAfterP(DLink_list &DL, Node* P, int x){
-
+    Node* newNode = new Node;
+    newNode->data = x;
+    if(IsEmpty(DL)){
+        DL.H = DL.T = new Node;
+        return;
+    }
+    if(P == NULL){
+        return;
+    }
+    if(P == DL.T){ // P la vi tri cuoi cung => InsertEnd
+        InsertEnd(DL, x);
+        return;
+    }
 }
-
+// Tim node P co gia tri x
+Node* SearchNode(DLink_list &DL, int x){
+    if(IsEmpty(DL)){
+        cout << "List is Empty\n";
+        return NULL;
+    }
+    else { 
+        Node* temp = DL.H;
+        while (temp != DL.T) {
+            if(temp->data == x) return temp;
+            temp = temp->nextR;
+        }
+        if(DL.T->data == x) return DL.T;
+        return NULL;
+    }
+    
+}
+// Them 1 node vao truoc node gia tri k 
+void InsertBeforeK(DLink_list &DL, int k, int x){
+    Node* temp = SearchNode(DL, k);
+    InsertBeforeP(DL, temp, x);
+    return;
+}
+//Them 1 node vao sau node gia tri k
+void InsertAfterK(DLink_list &DL, int k, int x){
+    Node* temp = SearchNode(DL, k);
+    InsertAfterP(DL, temp, x);
+}
+// xoa node dau tien 
+void DeleteBegin(DLink_list &DL){
+    if(IsEmpty(DL)){
+        cout << "List is Empty\n";
+        return;
+    }
+    if (DL.H == DL.T) { //list co 1 node 
+        delete DL.H;
+        DL.H = DL.T = NULL;
+    }
+    else {
+        Node* temp = DL.H;
+        DL.H = temp->nextR;
+        DL.H->nextL = NULL;
+        delete temp;
+        return;
+    }
+}
+//xoa node cuoi cung 
+void DeleteEnd(DLink_list &DL){ 
+    if(IsEmpty(DL)){
+        cout << "List is Empty\n";
+        return;
+    }
+    if (DL.H == DL.T) { //list co 1 node 
+        delete DL.H;
+        DL.H = DL.T = NULL;
+    }
+    else {
+        Node* temp = DL.T;
+        DL.T = temp->nextL;
+        DL.T->nextR = NULL;
+        delete temp;
+        return;
+    }
+}
+//xoa node P
+void DeleteP(DLink_list &DL, Node* P){
+    if(IsEmpty(DL)){
+        cout << "List is Empty\n";
+        return;
+    }
+    if(P == NULL){
+        return;
+    }
+    if(P == DL.H){
+        DeleteBegin(DL);
+        return;
+    }
+    if(P == DL.T){
+        DeleteEnd(DL);
+        return;
+    }
+    else {
+        P->nextL->nextR = P->nextR;
+        P->nextR->nextL = P->nextL;
+        delete P;
+        return;
+    }
+}
 //hien thi cac phan tu trong danh sach 
 void Display(DLink_list &DL){
     if(IsEmpty(DL)){
@@ -110,5 +211,12 @@ int main(){
     Display(DL);
     InsertEnd(DL, 5);
     Display(DL);
-
+    InsertAfterK(DL, 5, 6);
+    Display(DL);
+    InsertBeforeK(DL, 3, 7);
+    Display(DL);
+    DeleteBegin(DL);
+    Display(DL);
+    DeleteEnd(DL);
+    Display(DL);
 }
