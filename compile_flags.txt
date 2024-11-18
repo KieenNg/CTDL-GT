@@ -1,6 +1,0 @@
--I
-C:\MinGW\mingw32\include
--I
-C:\MinGW\lib\gcc\mingw32\6.3.0\include\c++
--I
-C:\MinGW\lib\gcc\mingw32\6.3.0\include\c++\mingw32
