@@ -67,7 +67,7 @@ void hienThi(Node* root){ //duyet theo thu tu truoc
     hienThi(root->RP);
 }
 // xoa node P
-void  DelNode(Node*& P) {	//Xóa nút P & sắp lại cây
+void  DelNode(Node* P) {	//Xóa nút P & sắp lại cây
 	Node* Q, *R;
 	if (P->LP == NULL) {	//Xóa nút chỉ có cây con phải 							hoặc nút lá
 		Q = P;
@@ -116,9 +116,21 @@ int main(){
     cout << endl;
     //Cach insert 2
     Node* T2;
-    for(int i = 0; i < sizeof(a)/4; i++){
-        insertT2(&T2, a[i]);
-    }
-    hienThi(T2);
-}
+	initTree(T2);
+	for (int i = 0; i < sizeof(a) / 4; i++)
+		insertT2(&T2, a[i]);
+	hienThi(T2);
+	cout << endl;
+    //
+    Node* T3;
+	initTree(T3);
+	for (int i = 0; i < sizeof(a) / 4; i++)
+		T3 = insertT3(T3, a[i]);
+	hienThi(T3);
+    cout << endl;
 
+    DeleteT(T, 11);
+	cout << endl;
+	hienThi(T);
+    cout << endl;
+}
