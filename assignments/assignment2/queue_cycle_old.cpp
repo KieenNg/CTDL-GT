@@ -1,9 +1,7 @@
 #include <iostream>
 using namespace std;
-#if 0
 
 #define MAX 3
-
 
 typedef struct {
     int data[MAX];
@@ -98,49 +96,4 @@ int main(){
     //EnQueue(q,6);
     
     Display(q);
-}
-#endif
-
-#define FIFO_SIZE 7
-static int PutI;  // index to put new
-static int GetI;  // index of oldest
-static int Fifo[FIFO_SIZE];
-
-void Fifo_Init(){
-  PutI = GetI = 0;  // empty
-}
-
-void Fifo_Put(int data){
-  if(((PutI+1)%FIFO_SIZE) == GetI) return; // fail if full
-  Fifo[PutI] = data;         // save in Fifo
-  PutI = (PutI+1)%FIFO_SIZE; // next place to put
-}
-
-int Fifo_Get(){
-  if(GetI == PutI) return 0; // fail if empty
-  char data = Fifo[GetI];      // retrieve data
-  GetI = (GetI+1)%FIFO_SIZE; // next place to get
-  return data;
-}
-
-int main() {
-    Fifo_Init();
-
-    Fifo_Put(1);
-    Fifo_Put(2);
-    Fifo_Put(3);
-    Fifo_Put(4);
-    Fifo_Put(5);
-    Fifo_Put(6);
-    Fifo_Put(7);
-
-    cout << Fifo_Get() << endl;
-    cout << Fifo_Get() << endl;
-    cout << Fifo_Get() << endl;
-    cout << Fifo_Get() << endl;
-    cout << Fifo_Get() << endl;
-    cout << Fifo_Get() << endl;
-    cout << Fifo_Get() << endl;
-    cout << Fifo_Get() << endl;
-    cout << Fifo_Get() << endl;
 }

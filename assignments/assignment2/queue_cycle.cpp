@@ -47,14 +47,10 @@ int main(){
     EnQueue(q,2);
     EnQueue(q,3);
     EnQueue(q,4);
-    EnQueue(q,5);
-    EnQueue(q,6);
-    EnQueue(q,7);
-    EnQueue(q,8);
-    DeQueue(q);
-    DeQueue(q);
-    DeQueue(q);
 
+    DeQueue(q);
+    DeQueue(q);
+	
     Display(q);
 }
 

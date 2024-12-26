@@ -22,7 +22,6 @@ int IsEmpty(PriorityQueue &Q){
     return (Q == NULL);
 }
 
-
 void EnQueue(PriorityQueue &Q, detail new_element){
     Pnode P = new Node;
     P->elements = new_element;
@@ -56,7 +55,6 @@ int DeQueue(PriorityQueue &Q){
         return value;
     }
 }
-
 
 int Count(PriorityQueue &Q){
     int cnt = 0;
@@ -101,8 +99,6 @@ int main(){
     EnQueue(Q,e1); 
     EnQueue(Q,e2); 
     EnQueue(Q,e3); 
-    EnQueue(Q,e4); 
-    EnQueue(Q,e5); 
     Display(Q);
     cout << "Queue dang co: " << Count(Q) << " phan tu\n";
     DeQueue(Q);
